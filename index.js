@@ -1,11 +1,14 @@
-const { default: makeWASocket, useSingleFileAuthState } = require('@whiskeysockets/baileys');
-const { state, saveState } = useSingleFileAuthState('./session/creds.json');
+const baileys = require('@whiskeysockets/baileys');
+const makeWASocket = baileys.default;
+const { useSingleFileAuthState } = baileys;
 const fs = require('fs');
 const path = require('path');
 
 const botName = 'DayNetBot';
 const katalogPath = './media/katalog.pdf';
 const produkPath = './media/produk.jpg';
+
+const { state, saveState } = useSingleFileAuthState('./session/creds.json');
 
 async function startSock() {
     const sock = makeWASocket({ auth: state });
@@ -19,13 +22,8 @@ async function startSock() {
         const sender = msg.key.remoteJid;
 
         if (text.toLowerCase() === 'menu') {
-            await sock.sendMessage(sender, { 
-                text: `*${botName}*
-
-Ketik:
-1. katalog
-2. produk
-3. info`
+            await sock.sendMessage(sender, {
+                text: `*${botName}*\n\nKetik:\n1. katalog\n2. produk\n3. info`
             });
         } else if (text.toLowerCase() === 'katalog') {
             await sock.sendMessage(sender, {
@@ -40,9 +38,7 @@ Ketik:
             });
         } else if (text.toLowerCase() === 'info') {
             await sock.sendMessage(sender, {
-                text: `DayNetBot adalah bot WA siap pakai.
-
-Hubungi admin untuk informasi lebih lanjut.`
+                text: `DayNetBot adalah bot WA siap pakai.\n\nHubungi admin untuk informasi lebih lanjut.`
             });
         }
     });
