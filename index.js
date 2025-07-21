@@ -39,7 +39,7 @@ Ketik:
         } else if (text.toLowerCase() === 'info') {
             await sock.sendMessage(sender, {
                 text: `DayNetBot adalah bot WA siap pakai.
-                Bisa kirim media dan auto reply`,
+               
 
 Hubungi admin untuk informasi lebih lanjut.'
             });
