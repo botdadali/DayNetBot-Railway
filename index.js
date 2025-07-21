@@ -19,12 +19,14 @@ async function startSock() {
         const sender = msg.key.remoteJid;
 
         if (text.toLowerCase() === 'menu') {
-            await sock.sendMessage(sender, { text: `*${botName}*
+            await sock.sendMessage(sender, { 
+                text: `*${botName}*
 
 Ketik:
 1. katalog
 2. produk
-3. info` });
+3. info`
+            });
         } else if (text.toLowerCase() === 'katalog') {
             await sock.sendMessage(sender, {
                 document: fs.readFileSync(katalogPath),
@@ -39,9 +41,8 @@ Ketik:
         } else if (text.toLowerCase() === 'info') {
             await sock.sendMessage(sender, {
                 text: `DayNetBot adalah bot WA siap pakai.
-               
 
-Hubungi admin untuk informasi lebih lanjut.'
+Hubungi admin untuk informasi lebih lanjut.`
             });
         }
     });
